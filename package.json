@@ -4,7 +4,7 @@
   "description": "diary app",
   "main": "index.js",
   "scripts": {
-    "start:server": "ts-node server/index.ts"
+    "dev:server": "ts-node server/index.ts"
   },
   "author": "ushinji",
   "license": "MIT",
