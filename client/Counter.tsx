@@ -4,14 +4,15 @@ const Counter: React.FC = () => {
   const [count, setCount] = React.useState(0);
 
   const increaseCount = React.useCallback(() => {
-    setCount(prev => {
-      return prev + 1;
-    });
-  }, [count, setCount]);
+    setCount((prev) => prev + 1);
+  }, [setCount]);
 
   return (
     <div>
-      <h2>カウンター: {count}</h2>
+      <h2>
+        カウンター:
+        {count}
+      </h2>
       <button type="button" onClick={increaseCount}>
         ＋
       </button>
