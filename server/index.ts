@@ -8,7 +8,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(
   '/',
   (_, res: Response): void => {
-    res.sendStatus(200);
+    res.render('./index.ejs');
   }
 );
 
