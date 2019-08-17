@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "diary app",
   "scripts": {
-    "dev:server": "ts-node server/index.ts",
+    "dev:server": "ts-node server/index.ts | pino-pretty",
     "dev:frontend": "webpack-dev-server --mode development --output '[name].js'"
   },
   "author": "ushinji",
@@ -11,6 +11,8 @@
   "devDependencies": {
     "@types/express": "^4.17.0",
     "@types/node": "^12.7.2",
+    "@types/pino": "^5.8.9",
+    "@types/pino-http": "^4.0.3",
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.8.5",
     "@typescript-eslint/eslint-plugin": "^2.0.0",
@@ -36,6 +38,9 @@
   "dependencies": {
     "ejs": "^2.6.2",
     "express": "^4.17.1",
+    "pino": "^5.13.2",
+    "pino-http": "^4.2.0",
+    "pino-pretty": "^3.2.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   }
