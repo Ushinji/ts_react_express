@@ -5,7 +5,7 @@
   "author": "ushinji",
   "license": "MIT",
   "scripts": {
-    "dev:server": "ts-node server/index.ts | pino-pretty",
+    "dev:server": "nodemon server/index.ts | pino-pretty",
     "dev:frontend": "webpack-dev-server --mode development --output '[name].js'"
   },
   "dependencies": {
@@ -35,6 +35,7 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "nodemon": "^1.19.1",
     "prettier": "^1.18.2",
     "ts-loader": "^6.0.4",
     "ts-node": "^8.3.0",
