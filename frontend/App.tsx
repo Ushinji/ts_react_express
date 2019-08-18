@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Counter from './Counter';
+import FetchTest from './FetchTest';
 
 type State = {
   hasError: boolean;
@@ -25,7 +25,7 @@ class App extends React.Component<{}, State> {
     return (
       <div>
         <h1>ふがあああああ</h1>
-        <Counter />
+        <FetchTest />
       </div>
     );
   }
