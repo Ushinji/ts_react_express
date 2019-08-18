@@ -3,7 +3,7 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = {
   entry: {
-    main: './client/index.tsx',
+    main: './frontend/index.tsx',
   },
   output: {
     path: path.join(__dirname, './public/dist'),
