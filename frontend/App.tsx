@@ -1,5 +1,5 @@
 import * as React from 'react';
-import FetchTest from './FetchTest';
+import FetchTest from './components/pages/FetchTest';
 
 type State = {
   hasError: boolean;
