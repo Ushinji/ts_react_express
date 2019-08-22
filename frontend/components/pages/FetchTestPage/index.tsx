@@ -40,7 +40,7 @@ const useFetchTest = () => {
   return { fetchTestResult };
 };
 
-const FetchTest: React.FC = () => {
+const FetchTestPage: React.FC = () => {
   const { fetchTestResult } = useFetchTest();
 
   if (fetchTestResult.loading) {
@@ -54,4 +54,4 @@ const FetchTest: React.FC = () => {
   return <div>{`Result: ${fetchTestResult.result}`}</div>;
 };
 
-export default FetchTest;
+export default FetchTestPage;

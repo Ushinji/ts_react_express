@@ -1,34 +1,13 @@
 import * as React from 'react';
-import FetchTest from './components/pages/FetchTest';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Routes from './components/Routes';
 
-type State = {
-  hasError: boolean;
+const App = () => {
+  return (
+    <Router>
+      <Routes />
+    </Router>
+  );
 };
-
-class App extends React.Component<{}, State> {
-  constructor(props = {}) {
-    super(props);
-    this.state = { hasError: false };
-  }
-
-  componentDidCatch(error: Error | null, info: object) {
-    console.log(error); // eslint-disable-line no-console
-    console.log(info); // eslint-disable-line no-console
-    this.setState({ hasError: true });
-  }
-
-  render() {
-    if (this.state.hasError) {
-      return <div>Error</div>;
-    }
-
-    return (
-      <div>
-        <h1>ふがあああああ</h1>
-        <FetchTest />
-      </div>
-    );
-  }
-}
 
 export default App;

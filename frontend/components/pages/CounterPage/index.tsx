@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const Counter: React.FC = () => {
+const CounterPage: React.FC = () => {
   const [count, setCount] = React.useState(0);
 
   const increaseCount = React.useCallback(() => {
@@ -20,4 +20,4 @@ const Counter: React.FC = () => {
   );
 };
 
-export default Counter;
+export default CounterPage;
