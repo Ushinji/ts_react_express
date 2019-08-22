@@ -12,6 +12,9 @@ const RootPage: React.FC = () => {
         <li>
           <Link to="/test">FetchTest</Link>
         </li>
+        <li>
+          <Link to="/posts">PostList</Link>
+        </li>
       </ul>
     </div>
   );
