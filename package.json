@@ -17,6 +17,7 @@
     "express": "^4.17.1",
     "express-promise-router": "^3.0.3",
     "graphql": "^14.4.2",
+    "graphql-tag": "^2.10.1",
     "pino": "^5.13.2",
     "pino-http": "^4.2.0",
     "pino-pretty": "^3.2.1",

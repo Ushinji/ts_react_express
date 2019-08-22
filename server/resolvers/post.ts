@@ -1,4 +1,4 @@
-type UserType = {
+type Post = {
   id: number;
   title: string;
   text: string;
@@ -6,7 +6,7 @@ type UserType = {
   updatedAt: string;
 };
 
-const posts: UserType[] = [
+const posts: Post[] = [
   {
     id: 1,
     title: 'TestTitle1',
