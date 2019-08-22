@@ -1,22 +1,12 @@
 import http from 'http';
 import express from 'express';
-import { gql, ApolloServer } from 'apollo-server-express';
+import { ApolloServer } from 'apollo-server-express';
 import { logger, requestLogger } from './middlewares/logger';
 import routes from './routes';
+import resolvers from './resolvers';
+import schema from './schema';
 
-const typeDefs = gql`
-  type Query {
-    hello: String
-  }
-`;
-
-const resolvers = {
-  Query: {
-    hello: () => 'Hello world!',
-  },
-};
-
-const apolloServer = new ApolloServer({ typeDefs, resolvers });
+const apolloServer = new ApolloServer({ typeDefs: schema, resolvers });
 
 const app = express();
 app.use(express.json());
