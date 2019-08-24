@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
-import { GET_POSTS, GetPostsResult } from '../queries/postQuery';
+import { GET_POSTS, GetPostsResult, Post } from '../queries/postQuery';
 
 const CREATE_POST = gql`
   mutation createPost($title: String!, $text: String!) {
@@ -14,26 +14,39 @@ const CREATE_POST = gql`
   }
 `;
 
-export const useCreatePostMutation = () => {
-  const [createPostMutation] = useMutation(CREATE_POST, {
-    // TODO: createPostがany型。Typeを定義すること
-    update(cache, { data: { createPost } }) {
-      const cachedQuery = cache.readQuery<GetPostsResult>({ query: GET_POSTS });
+type createPostMutationResult = {
+  post: Post;
+};
 
-      // TODO: cache.writeQueryのdataがany型。Typeを定義すること
-      if (cachedQuery) {
-        cache.writeQuery({
+export const useCreatePostMutation = () => {
+  const [createPostMutation] = useMutation<createPostMutationResult>(
+    CREATE_POST,
+    {
+      update(cache, { data: result }) {
+        // TODO: Error Handling
+        if (!result) return;
+
+        const cachedQuery = cache.readQuery<GetPostsResult>({
           query: GET_POSTS,
-          data: { getPosts: cachedQuery.getPosts.concat([createPost]) },
         });
-      } else {
-        cache.writeQuery({
-          query: GET_POSTS,
-          data: { getPosts: [createPost] },
-        });
-      }
-    },
-  });
+
+        // TODO: data.getPostsに型制限がないので、型を追加
+        if (cachedQuery) {
+          cache.writeQuery({
+            query: GET_POSTS,
+            data: {
+              getPosts: cachedQuery.getPosts.concat([result.post]),
+            },
+          });
+        } else {
+          cache.writeQuery({
+            query: GET_POSTS,
+            data: { getPosts: [result.post] },
+          });
+        }
+      },
+    }
+  );
 
   return { createPostMutation };
 };
