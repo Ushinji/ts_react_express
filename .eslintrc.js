@@ -32,6 +32,7 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'react/destructuring-assignment': 0,
+    'react/jsx-props-no-spreading': 0,
     'no-return-assign': 0,
     'prefer-destructuring': 0,
     'import/prefer-default-export': 0,
