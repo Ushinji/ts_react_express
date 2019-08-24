@@ -8,7 +8,10 @@ const { useState, useCallback } = React;
 const useCreatePost = (history: History) => {
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
-  const { createPost } = useCreatePostMutation();
+  const [
+    createPost,
+    { loading: createPostLoading, error: createPostError },
+  ] = useCreatePostMutation();
 
   const onChangeTitle = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,6 +28,10 @@ const useCreatePost = (history: History) => {
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     await createPost({ variables: { title, text } });
+    // TODO: Server側のErrorハンドリング、およびフロント側でのErrorHandlingの整備
+    if (createPostError) {
+      throw Error('Error!');
+    }
     history.push('/posts');
   };
 
@@ -44,11 +51,17 @@ const useCreatePost = (history: History) => {
       onChange: onChangeText,
     },
     onSubmit,
+    createPostLoading,
   };
 };
 
 const PostCreatePage: React.FC<RouteComponentProps> = ({ history }) => {
-  const { inputTitleProps, inputTextProps, onSubmit } = useCreatePost(history);
+  const {
+    inputTitleProps,
+    inputTextProps,
+    onSubmit,
+    createPostLoading,
+  } = useCreatePost(history);
 
   return (
     <div>
@@ -67,6 +80,7 @@ const PostCreatePage: React.FC<RouteComponentProps> = ({ history }) => {
           </label>
         </div>
         <button type="submit">作成する</button>
+        {createPostLoading && <p>送信中...</p>}
       </form>
     </div>
   );

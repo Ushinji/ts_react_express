@@ -19,10 +19,10 @@ type createPostMutationResult = {
 };
 
 export const useCreatePostMutation = () => {
-  const [createPost] = useMutation<createPostMutationResult>(CREATE_POST, {
+  return useMutation<createPostMutationResult>(CREATE_POST, {
     update(cache, { data: result }) {
-      // TODO: Error Handling
-      if (!result) return;
+      // TODO: Server側のErrorハンドリング、およびフロント側でのErrorHandlingの整備
+      if (!result) throw Error('result is null');
 
       const cachedQuery = cache.readQuery<GetPostsResult>({
         query: GET_POSTS,
@@ -43,6 +43,4 @@ export const useCreatePostMutation = () => {
       }
     },
   });
-
-  return { createPost };
 };
