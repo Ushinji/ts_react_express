@@ -30,16 +30,15 @@ export const useCreatePostMutation = () => {
           query: GET_POSTS,
         });
 
-        // TODO: data.getPostsに型制限がないので、型を追加
         if (cachedQuery) {
-          cache.writeQuery({
+          cache.writeQuery<GetPostsResult>({
             query: GET_POSTS,
             data: {
               getPosts: cachedQuery.getPosts.concat([result.post]),
             },
           });
         } else {
-          cache.writeQuery({
+          cache.writeQuery<GetPostsResult>({
             query: GET_POSTS,
             data: { getPosts: [result.post] },
           });
