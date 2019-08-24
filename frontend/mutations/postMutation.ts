@@ -19,33 +19,30 @@ type createPostMutationResult = {
 };
 
 export const useCreatePostMutation = () => {
-  const [createPostMutation] = useMutation<createPostMutationResult>(
-    CREATE_POST,
-    {
-      update(cache, { data: result }) {
-        // TODO: Error Handling
-        if (!result) return;
+  const [createPost] = useMutation<createPostMutationResult>(CREATE_POST, {
+    update(cache, { data: result }) {
+      // TODO: Error Handling
+      if (!result) return;
 
-        const cachedQuery = cache.readQuery<GetPostsResult>({
+      const cachedQuery = cache.readQuery<GetPostsResult>({
+        query: GET_POSTS,
+      });
+
+      if (cachedQuery) {
+        cache.writeQuery<GetPostsResult>({
           query: GET_POSTS,
+          data: {
+            getPosts: cachedQuery.getPosts.concat([result.createPost]),
+          },
         });
+      } else {
+        cache.writeQuery<GetPostsResult>({
+          query: GET_POSTS,
+          data: { getPosts: [result.createPost] },
+        });
+      }
+    },
+  });
 
-        if (cachedQuery) {
-          cache.writeQuery<GetPostsResult>({
-            query: GET_POSTS,
-            data: {
-              getPosts: cachedQuery.getPosts.concat([result.createPost]),
-            },
-          });
-        } else {
-          cache.writeQuery<GetPostsResult>({
-            query: GET_POSTS,
-            data: { getPosts: [result.createPost] },
-          });
-        }
-      },
-    }
-  );
-
-  return { createPostMutation };
+  return { createPost };
 };

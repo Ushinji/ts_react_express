@@ -8,7 +8,7 @@ const { useState, useCallback } = React;
 const useCreatePost = (history: History) => {
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
-  const { createPostMutation } = useCreatePostMutation();
+  const { createPost } = useCreatePostMutation();
 
   const onChangeTitle = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,7 +24,7 @@ const useCreatePost = (history: History) => {
   );
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await createPostMutation({ variables: { title, text } });
+    await createPost({ variables: { title, text } });
     history.push('/posts');
   };
 
