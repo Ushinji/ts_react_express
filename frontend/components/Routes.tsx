@@ -4,6 +4,7 @@ import CounterPage from './pages/CounterPage';
 import FetchTestPage from './pages/FetchTestPage';
 import RootPage from './pages/RootPage';
 import PostListPage from './pages/PostListPage';
+import PostCreatePage from './pages/PostCreatePage';
 
 type State = {
   hasError: boolean;
@@ -32,6 +33,7 @@ class Routes extends React.Component<{}, State> {
         <Route exact path="/counter" component={CounterPage} />
         <Route exact path="/test" component={FetchTestPage} />
         <Route exact path="/posts" component={PostListPage} />
+        <Route exact path="/posts/new" component={PostCreatePage} />
       </Switch>
     );
   }
