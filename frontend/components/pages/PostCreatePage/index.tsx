@@ -1,9 +1,11 @@
 import * as React from 'react';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { History } from 'history';
 import { useCreatePostMutation } from '../../../mutations/postMutation';
 
 const { useState, useCallback } = React;
 
-const useCreatePost = () => {
+const useCreatePost = (history: History) => {
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
   const { createPostMutation } = useCreatePostMutation();
@@ -23,6 +25,7 @@ const useCreatePost = () => {
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     createPostMutation({ variables: { title, text } });
+    history.push('/posts');
   };
 
   return {
@@ -44,8 +47,8 @@ const useCreatePost = () => {
   };
 };
 
-const PostCreatePage: React.FC = () => {
-  const { inputTitleProps, inputTextProps, onSubmit } = useCreatePost();
+const PostCreatePage: React.FC<RouteComponentProps> = ({ history }) => {
+  const { inputTitleProps, inputTextProps, onSubmit } = useCreatePost(history);
 
   return (
     <div>
@@ -69,4 +72,4 @@ const PostCreatePage: React.FC = () => {
   );
 };
 
-export default PostCreatePage;
+export default withRouter(PostCreatePage);
