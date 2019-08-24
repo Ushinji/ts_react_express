@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { useQuery } from '@apollo/react-hooks';
 import { Link } from 'react-router-dom';
-import { GET_POSTS, GetPostsResult } from '../../../queries/postQuery';
+import { useGetPostsQuery } from '../../../queries/postQuery';
 
 const PostListPage: React.FC = () => {
-  const { loading, error, data } = useQuery<GetPostsResult>(GET_POSTS);
+  const { loading, error, data } = useGetPostsQuery();
 
   if (loading) return <p>Loading...</p>;
   if (error || !data) return <p>Error :(</p>;

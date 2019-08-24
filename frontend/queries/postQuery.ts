@@ -1,4 +1,5 @@
 import gql from 'graphql-tag';
+import { useQuery } from '@apollo/react-hooks';
 
 export type Post = {
   id: number;
@@ -23,3 +24,7 @@ export const GET_POSTS = gql`
     }
   }
 `;
+
+export const useGetPostsQuery = () => {
+  return useQuery<GetPostsResult>(GET_POSTS);
+};
