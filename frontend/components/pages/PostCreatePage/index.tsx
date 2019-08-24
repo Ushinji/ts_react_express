@@ -22,9 +22,9 @@ const useCreatePost = (history: History) => {
     },
     []
   );
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    createPostMutation({ variables: { title, text } });
+    await createPostMutation({ variables: { title, text } });
     history.push('/posts');
   };
 
