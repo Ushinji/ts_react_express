@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-type Post = {
+export type Post = {
   id: number;
   title: string;
   text: string;
@@ -9,12 +9,12 @@ type Post = {
 };
 
 export type GetPostsResult = {
-  posts: Post[];
+  getPosts: Post[];
 };
 
-export const GetPostsQuery = gql`
+export const GET_POSTS = gql`
   {
-    posts {
+    getPosts {
       id
       title
       text

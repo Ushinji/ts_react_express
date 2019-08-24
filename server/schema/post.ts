@@ -10,6 +10,6 @@ export default gql`
   }
 
   type Query {
-    posts: [Post]!
+    getPosts: [Post]!
   }
 `;

@@ -8,10 +8,12 @@ apolloClient
   .query({
     query: gql`
       {
-        posts {
+        getPosts {
           id
           title
           text
+          createdAt
+          updatedAt
         }
       }
     `,
