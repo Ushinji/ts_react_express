@@ -1,4 +1,5 @@
 import http from 'http';
+import path from 'path';
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import { logger, requestLogger } from './middlewares/logger';
@@ -11,6 +12,7 @@ const apolloServer = new ApolloServer({ typeDefs: schema, resolvers });
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.set('views', path.join(__dirname, '/views'));
 app.use(requestLogger);
 apolloServer.applyMiddleware({ app });
 
