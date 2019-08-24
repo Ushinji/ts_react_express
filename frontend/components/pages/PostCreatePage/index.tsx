@@ -1,10 +1,12 @@
 import * as React from 'react';
+import { useCreatePostMutation } from '../../../mutations/postMutation';
 
 const { useState, useCallback } = React;
 
 const useCreatePost = () => {
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
+  const { createPostMutation } = useCreatePostMutation();
 
   const onChangeTitle = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,7 +22,7 @@ const useCreatePost = () => {
   );
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log('===submit===');
+    createPostMutation({ variables: { title, text } });
   };
 
   return {

@@ -12,4 +12,8 @@ export default gql`
   type Query {
     getPosts: [Post]!
   }
+
+  type Mutation {
+    createPost(title: String!, text: String!): Post!
+  }
 `;
