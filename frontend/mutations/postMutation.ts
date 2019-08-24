@@ -15,7 +15,7 @@ const CREATE_POST = gql`
 `;
 
 type createPostMutationResult = {
-  post: Post;
+  createPost: Post;
 };
 
 export const useCreatePostMutation = () => {
@@ -34,13 +34,13 @@ export const useCreatePostMutation = () => {
           cache.writeQuery<GetPostsResult>({
             query: GET_POSTS,
             data: {
-              getPosts: cachedQuery.getPosts.concat([result.post]),
+              getPosts: cachedQuery.getPosts.concat([result.createPost]),
             },
           });
         } else {
           cache.writeQuery<GetPostsResult>({
             query: GET_POSTS,
-            data: { getPosts: [result.post] },
+            data: { getPosts: [result.createPost] },
           });
         }
       },
